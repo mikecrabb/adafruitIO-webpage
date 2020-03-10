@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <p>{{value}}</p>
+  </div>
+</body>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      feed: [],
+      value: ''
+    },
+    created() {
+      var vm = this
+      axios.get('https://io.adafruit.com/api/v2/mzcrabb/feeds/1327426?x-aio-key=aio_eLtP99n8ftQefOJoI64Jl18Y2nfB')
+        .then(function(response) {
+          vm.feed = response.data;
+          vm.value = vm.feed.last_value;
+        })
+    }
+  })
+</script>
+
+</html>
